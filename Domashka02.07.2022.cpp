@@ -4,10 +4,10 @@
 // Domashka29.06.2022.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
-#include <iostream>
+/*#include <iostream>
 #include <Windows.h>
 
-using namespace std;
+using namespace std;*/
 //почему-то не работает с enum
 /*
 enum Menu
@@ -16,10 +16,10 @@ enum Menu
 };
 */
 
-int main()
+/*int main()
 {
     SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleOutputCP(1251);*/
     //выдает ошибки, но работает. Если увидите в чем проблема, подскажите пожалуйста.
     /*
     int n = 5, vibor, mTel[5], Tel[5], temp;
@@ -169,7 +169,7 @@ int main()
 
 
 //задание 4
-
+/*
     const int n = 10;
     int mass[n], mass2[n], temp, nShift, k, nShift1, schet1 = 0, schet2 = 0;
     srand(time(NULL));
@@ -181,14 +181,7 @@ int main()
             mass[i] = rand()%100;
             mass2[i] = mass[i];
         }
-        /*
-        cout << "Сформированный массив: ";
-        for (int i = 0; i < n; i++)
-        {
-            cout << mass[i] << " ";
-        }
-        cout << endl<<endl;
-        */
+       
         cout << "Сортировка усовершенствованным пузырьком" << endl;
         
         for (int i = 1; i <= n; i++)
@@ -211,13 +204,7 @@ int main()
                 break;
             }
         }
-        /*
-        for (int i = 0; i < n; i++)
-        {
-            cout << mass[i] << " ";
-        }
-        cout << endl;
-        */
+        
         // сортировка выбором
         // const size_t size = 5; что значит size_t
        // int i, j, k;
@@ -242,20 +229,108 @@ int main()
         }
         cout << "Сортировка выбором завершилась на " << nShift1 << " шаге\n";
         schet2+= nShift1;
-        /*
-        for (int i = 0; i < n; i++)
-        {
-            cout << mass2[i] << " ";
-        }
-        cout << endl;
-        */
+        
 
     }
     cout << "Среднее число перестановок для пузырькового усовершенствованного метода " << (double)schet1 / 1000 << endl;
     cout << "Среднее число перестановок для сортировки выбором " << (double)schet2 / 1000 << endl;
 }
+*/
 
+/*
+#include <iostream>
+#include<windows.h>
+#include<algorithm>
+using namespace std;
 
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    int  temp;
+    int arr[10];
+
+    srand(time(NULL));
+    for (int i = 0; i < 10; i++)
+    {
+        arr[i] = rand() % 100;
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    auto last = end(arr);
+    int* max;
+    while (last != begin(arr)) {
+        max = max_element(begin(arr), last);
+        reverse(begin(arr), ++max);
+        reverse(begin(arr), last);
+        --last;
+    }
+    
+    for (auto i : arr) {
+        cout << i << "  ";
+    }
+    }
+    */
+
+#include <iostream>
+#include<windows.h>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    int  temp, k, max, nmax, f;
+    int arr[10];
+    int n = 10;
+    srand(time(NULL));
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = rand() % 100;
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    f = n;
+    while (f != 0) {
+        k = f;
+        max = arr[0];
+        nmax = 0;
+        for (int i = 0; i < k; i++)
+        {
+            if (max < arr[i + 1])
+            {
+                max = arr[i + 1];
+                nmax = i + 1;
+            }
+        }
+        for (int j = 0; j <= nmax / 2; j++)
+        {
+            if ( nmax==0)
+            {
+                break;
+            }
+            temp = arr[j];
+            arr[j] = arr[nmax-j];
+            arr[nmax-j] = temp;
+        }
+        for (int i = 0; i <= k / 2; i++)
+        {
+            temp = arr[i];
+            arr[i] = arr[k];
+            arr[k] = temp;
+        }
+        f--;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+}
+    
 
 
 
