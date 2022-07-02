@@ -167,26 +167,31 @@ int main()
     }
     */
 
-    const int n = 5;
+
+//задание 4
+
+    const int n = 10;
     int mass[n], mass2[n], temp, nShift, k, nShift1, schet1 = 0, schet2 = 0;
     srand(time(NULL));
     //cout << "Введите элементы массива.\n";
-    for (int l = 0; l < 5; l++)
+    for (int l = 0; l < 1000; l++)
     {
         for (int i = 0; i < n; i++)
         {
             mass[i] = rand()%100;
             mass2[i] = mass[i];
         }
+        /*
         cout << "Сформированный массив: ";
         for (int i = 0; i < n; i++)
         {
             cout << mass[i] << " ";
         }
         cout << endl<<endl;
+        */
         cout << "Сортировка усовершенствованным пузырьком" << endl;
         
-        for (int i = 1; i < n; i++)
+        for (int i = 1; i <= n; i++)
         {
             nShift = 0;
             for (int r = 0; r < n - i; r++)
@@ -197,21 +202,22 @@ int main()
                     mass[r] = mass[r + 1];
                     mass[r + 1] = temp;
                     nShift++;
-                    schet1++;
                 }
             }
             if (nShift == 0)
             {
                 cout << "Сортировка усовершенствованным пузырьком завершилась на " << i << " шаге\n";
+                schet1+=i;
                 break;
             }
         }
-        
+        /*
         for (int i = 0; i < n; i++)
         {
             cout << mass[i] << " ";
         }
         cout << endl;
+        */
         // сортировка выбором
         // const size_t size = 5; что значит size_t
        // int i, j, k;
@@ -232,20 +238,27 @@ int main()
                 mass2[k] = mass2[i];
                 mass2[i] = temp;
                 nShift1++;
-                schet2++;
             } 
         }
         cout << "Сортировка выбором завершилась на " << nShift1 << " шаге\n";
+        schet2+= nShift1;
+        /*
         for (int i = 0; i < n; i++)
         {
             cout << mass2[i] << " ";
         }
         cout << endl;
+        */
 
     }
-    cout << "Среднее число перестановок для пузырькового усовершенствованного метода " << schet1 / n << endl;
-    cout << "Среднее число перестановок для сортировки выбором " << schet2 / n << endl;
+    cout << "Среднее число перестановок для пузырькового усовершенствованного метода " << (double)schet1 / 1000 << endl;
+    cout << "Среднее число перестановок для сортировки выбором " << (double)schet2 / 1000 << endl;
 }
+
+
+
+
+
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
